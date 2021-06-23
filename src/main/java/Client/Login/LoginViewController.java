@@ -22,6 +22,7 @@ import main.java.Client.MainApp;
 import main.java.Client.Model.ClientModel;
 import main.java.Client.stage.ControlledStage;
 import main.java.Client.stage.StageController;
+import main.java.Dao.DbUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,7 +55,7 @@ public class LoginViewController implements ControlledStage, Initializable {
 
     public void setStageController(StageController stageController) {
         this.myController=stageController;
-        model=ClientModel.getInstance();
+        model=ClientModel.getInstance(txtUsername.getText());
     }
 
     @FXML
@@ -92,6 +93,7 @@ public class LoginViewController implements ControlledStage, Initializable {
         myController.getStage(MainApp.mainViewID).setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
+                model.backup();
                 model.disConnect();
             }
         });
@@ -107,6 +109,7 @@ public class LoginViewController implements ControlledStage, Initializable {
 
     public void logIn(ActionEvent event) {
         StringBuffer result=new StringBuffer();
+       // model=ClientModel.getInstance(txtUsername.getText());
         if(model.CheckLogin(txtUsername.getText(),textPassword.getText(),result,0)){
             goToMain();
         }else {

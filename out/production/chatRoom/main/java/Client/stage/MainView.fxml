@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -16,26 +17,53 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.Client.chatroom.MainView">
     <left>
         <VBox prefHeight="300.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #d6d2d2;">
-                    <children>
-                        <Label fx:id="labUserCoumter" text="好友列表" textAlignment="CENTER">
-                            <font>
-                                <Font name="Britannic Bold" size="13.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="7.0" top="7.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children></HBox>
-                <ListView fx:id="userGroup" prefHeight="400.0" prefWidth="150.0" />
-            </children>
             <BorderPane.margin>
                 <Insets right="5.0" />
             </BorderPane.margin>
+         <children>
+            <TitledPane fx:id="friendTitledPane" animated="false" text="注册用户">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="userGroup" layoutY="-1.0" prefHeight="84.0" prefWidth="207.0">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </ListView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane fx:id="fiendlistTitlePane" animated="false" text="好友">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="friendlistview" layoutX="-3.0" prefHeight="80.0" prefWidth="207.0">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </ListView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane fx:id="GroupChatTitlePane" animated="false">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="groupChatlistView" layoutY="-2.0" prefHeight="84.0" prefWidth="201.0">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding></ListView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+         </children>
         </VBox>
     </left>
     <top>
@@ -43,7 +71,7 @@
             <children>
                 <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@/main/resource/image/head.png" />
+                        <Image url="@../../../resource/image/head.png" />
                     </image>
                     <HBox.margin>
                         <Insets left="10.0" top="5.0" />

@@ -16,6 +16,7 @@ public class Constants {
     public static Integer  SPEAKER = 0x14;
     public static Integer  RECEIVER = 0x15;
     public static Integer  CONTENT= 0x16;
+    public static Integer  GROUPNAME= 0x17;
     //command
     public final static int COM_LOGIN = 0x20;
     public final static int COM_SIGNUP = 0x21;
@@ -27,4 +28,5 @@ public class Constants {
     public final static int COM_CHATALL = 0x27;
     public final static int COM_KEEP = 0x28;
     public final static int COM_MESSAGEALL = 0X29;
+
 }

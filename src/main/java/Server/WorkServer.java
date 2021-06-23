@@ -2,6 +2,8 @@ package main.java.Server;
 
 import com.google.gson.Gson;
 import main.java.Utils.GsonUtils;
+import main.java.bean.ClientUser;
+import main.java.bean.Group;
 import main.java.bean.ServerUser;
 
 import java.io.*;
@@ -30,6 +32,8 @@ public class WorkServer extends Thread{
 
     private ArrayList<ServerUser> users;
 
+    private ArrayList<Group> groups;
+
     private BufferedReader reader;
 
     private PrintWriter writer;
@@ -40,9 +44,10 @@ public class WorkServer extends Thread{
 
     private Gson gson;
 
-    public WorkServer(Socket socket, ArrayList users) {
+    public WorkServer(Socket socket, ArrayList users,ArrayList groups) {
         super();
         gson = new Gson();
+        this.groups=groups;
         this.socket = socket; //bind socket
         this.users = users;   //get the common user resource
     }
@@ -59,7 +64,7 @@ public class WorkServer extends Thread{
                 //heart check
                 long newTime = new Date().getTime();
                 if (newTime - currentTime > 2000) {
-                    logOut();
+//                    logOut();
                 } else {
                     currentTime = newTime;
                 }
@@ -209,13 +214,40 @@ public class WorkServer extends Thread{
                 workUser.addMsg(gson.toJson(map));
                 break;
             case COM_CHATALL:
-                map=new HashMap();
+                String groupname=(String) gsonMap.get(GROUPNAME);
+                map = new HashMap();
                 map.put(COMMAND, COM_CHATALL);
+                map.put(GROUPNAME,groupname);
                 map.put(SPEAKER, workUser.getUserName());
                 map.put(TIME, getFormatDate());
                 map.put(CONTENT, gsonMap.get(CONTENT));
                 broadcast(gson.toJson(map), COM_MESSAGEALL);
                 break;
+//                String groupName=(String) gsonMap.get(RECEIVER);
+//                ArrayList<ClientUser> receives=new ArrayList<>();
+//                for(Group g:groups){
+//                    if(g.getGroupName().equals(groupName)){
+//                        receives=g.getMember();
+//                        break;
+//                    }
+//                }
+//                map=new HashMap();
+//                map.put(COMMAND, COM_CHATALL);
+//                map.put(SPEAKER, workUser.getUserName());
+//                map.put(TIME, getFormatDate());
+//                map.put(CONTENT, gsonMap.get(CONTENT));
+//                for(ServerUser u:users){
+//                    for(ClientUser c:receives){
+//                        if(c.getUserName().equals(u.getUserName()))
+//                            map.put(RECEIVER,c.getUserName());
+//                            u.addMsg(gson.toJson(map));
+//                    }
+//                }
+//                for(ClientUser c:receives){
+//                    map.put(RECEIVER,c.getUserName());
+//
+//                }
+//                break;
             default:
                 break;
         }

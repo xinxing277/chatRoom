@@ -14,7 +14,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class ServerUser {
     private String userName;
     private String status;
-    //用户信息队列,暂时不懂有什么用
     public Queue<String> session;
     public String password;
     public  int id;

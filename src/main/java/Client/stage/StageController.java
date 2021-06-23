@@ -47,7 +47,7 @@ public class StageController {
     public boolean loadStage(String name, String resources, StageStyle... styles) {
         try {
             //加载FXML资源文件
-            System.out.println(getClass().getResource(resources));
+//            System.out.println(getClass().getResource(resources));
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resources));
             Pane tempPane = (Pane) loader.load();
 
@@ -75,8 +75,7 @@ public class StageController {
     /**
      * @Description:只显示Satge而不隐藏
      * @param name:
-
-    	 * @return boolean
+     * @return boolean
      **/
     public boolean setStage(String name){
         this.getStage(name).show();
@@ -86,8 +85,7 @@ public class StageController {
      * @Description:显示Stage并隐藏给定的Stage
      * @param show:
      * @param close:
-
-    	 * @return boolean
+     * @return boolean
      **/
     public boolean setStage(String show,String close){
         getStage(close).close();
@@ -97,8 +95,7 @@ public class StageController {
     /**
      * @Description:从Map中删除Stage对象
      * @param name:
-
-    	 * @return boolean
+     * @return boolean
      **/
     public boolean unloadStage(String name){
         if(stages.remove(name)==null){

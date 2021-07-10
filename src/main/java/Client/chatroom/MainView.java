@@ -50,6 +50,7 @@ import main.java.bean.Message;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -97,6 +98,7 @@ public class MainView implements ControlledStage, Initializable {
     private ObservableList<ClientUser> uselist;
     private ObservableList<ClientUser> friendlist;
     private ObservableList<Group> grouplist;
+//    private HashMap<String, ArrayList<Message>> chatRecord;
 //    三个列表共享chatReccder
     private static ObservableList<Message> chatReccder;
     public MainView(){
@@ -111,6 +113,8 @@ public class MainView implements ControlledStage, Initializable {
         uselist=ClientModel.userList;
         friendlist=ClientModel.friendlist;
         grouplist=ClientModel.grouplist;
+//        chatRecord.putAll(ClientModel.chatRecorderSum);
+//        chatRecord.putAll(ClientModel.groupChatRecord);
         chatReccder=model.getChatRecoder();
         userGroup.setItems(uselist);
         groupChatlistView.setItems(grouplist);
@@ -237,10 +241,8 @@ public class MainView implements ControlledStage, Initializable {
         if(pattern==GROUP){
 //                    如果目前是群聊模式
             HashMap map=new HashMap();
-//            这里定义CHATALL为群聊，selectUser是群名
             map.put(COMMAND,COM_CHATALL);
             map.put(GROUPNAME,seletUser);
-//            map.put(RECEIVER,seletUser);
             map.put(SPEAKER,model.getThisUser());
             map.put(CONTENT,textSend.getText().trim());
             model.sentMessage(gson.toJson(map));

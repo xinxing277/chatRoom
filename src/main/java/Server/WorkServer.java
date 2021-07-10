@@ -147,8 +147,6 @@ public class WorkServer extends Thread{
                 username=(String) gsonMap.get(USERNAME);
                 password=(String) gsonMap.get(PASSWORD);
                 map.put(COMMAND,COM_RESULT);
-//                if(creatUser(username,password)){
-                    //创建成功则马上变更心跳
                     currentTime=new Date().getTime();
                     //存储信息
                     map.put(COM_RESULT,SUCCESS);
@@ -156,12 +154,6 @@ public class WorkServer extends Thread{
                     writer.println(gson.toJson(map));
                     broadcast(getGroup(),COM_SIGNUP);
                     System.out.println("用户" + username + "注册上线了");
-//                }else {
-//                    map.put(COM_RESULT,FAILED);
-//                    map.put(COM_DESCRIPTION,username+"已经被注册");
-//                    writer.println(gson.toJson(map));
-//                    System.out.println(username + "该用户已经被注册");
-//                }
                 break;
             case COM_LOGIN:
                 username = (String) gsonMap.get(USERNAME);
@@ -210,7 +202,6 @@ public class WorkServer extends Thread{
                         break;
                     }
                 }
-                //为什么还要加到workUser呢
                 workUser.addMsg(gson.toJson(map));
                 break;
             case COM_CHATALL:
@@ -223,31 +214,6 @@ public class WorkServer extends Thread{
                 map.put(CONTENT, gsonMap.get(CONTENT));
                 broadcast(gson.toJson(map), COM_MESSAGEALL);
                 break;
-//                String groupName=(String) gsonMap.get(RECEIVER);
-//                ArrayList<ClientUser> receives=new ArrayList<>();
-//                for(Group g:groups){
-//                    if(g.getGroupName().equals(groupName)){
-//                        receives=g.getMember();
-//                        break;
-//                    }
-//                }
-//                map=new HashMap();
-//                map.put(COMMAND, COM_CHATALL);
-//                map.put(SPEAKER, workUser.getUserName());
-//                map.put(TIME, getFormatDate());
-//                map.put(CONTENT, gsonMap.get(CONTENT));
-//                for(ServerUser u:users){
-//                    for(ClientUser c:receives){
-//                        if(c.getUserName().equals(u.getUserName()))
-//                            map.put(RECEIVER,c.getUserName());
-//                            u.addMsg(gson.toJson(map));
-//                    }
-//                }
-//                for(ClientUser c:receives){
-//                    map.put(RECEIVER,c.getUserName());
-//
-//                }
-//                break;
             default:
                 break;
         }

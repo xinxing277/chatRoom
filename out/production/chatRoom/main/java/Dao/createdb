@@ -1,0 +1,37 @@
+  CREATE SCHEMA chatroom;
+ CREATE TABLE person(
+    NAME VARCHAR(20),
+    PASSWORD VARCHAR(20),
+    PRIMARY KEY(NAME,PASSWORD)
+ )CHARACTER SET utf8;
+CREATE TABLE chatrecord(
+    thisUser VARCHAR(20),
+    chatUser VARCHAR(20),
+    speaker VARCHAR(20),
+    content VARCHAR(255),
+    time TIMESTAMP,
+    PRIMARY KEY(thisUser,time)
+)CHARACTER SET utf8;
+    CREATE TABLE friendlist(
+        myName VARCHAR(20),
+        friName VARCHAR(20),
+        PRIMARY KEY(myName,friName)
+)CHARACTER SET utf8;
+CREATE TABLE friendlist (
+`friName`  varchar(20) NOT NULL ,
+`myName`  varchar(20) NOT NULL ,
+PRIMARY KEY(friname,myname)
+)CHARACTER SET utf8;
+CREATE TABLE groupchat (
+`groupname`  varchar(20) NOT NULL ,
+`groupmember`  varchar(20) NOT NULL ,
+PRIMARY KEY(groupname,groupmember)
+)CHARACTER SET utf8;
+CREATE TABLE groupchatRecord (
+`groupname`  varchar(20) NOT NULL ,
+`speaker`  varchar(20) NOT NULL ,
+`content`  varchar(20) NOT NULL ,
+`time`  timestamp NOT NULL ,
+PRIMARY KEY(groupname,speaker,time)
+)CHARACTER SET utf8;
+
